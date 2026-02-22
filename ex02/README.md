@@ -36,13 +36,13 @@ This exercise combines several Unix concepts:
 4. **Set the required timestamps:**
    Use `touch -t YYYYMMDDHHMM` to set the exact dates.
    ```bash
-   touch -t 202306012047 test0
-   touch -t 202306012146 test1
-   touch -t 202306012245 test2
-   touch -t 202306012344 test3
-   touch -t 202306012343 test4
-   touch -t 202306012344 test5
-   touch -h -t 202306012220 test6  # The -h flag applies the time to the symlink itself
+   touch -t 202506012047 test0
+   touch -t 202506012146 test1
+   touch -t 202506012245 test2
+   touch -t 202506012344 test3
+   touch -t 202506012343 test4
+   touch -t 202506012344 test5
+   touch -h -t 202506012220 test6  # The -h flag applies the time to the symlink itself
    ```
 
 5. **Set the correct permissions:**
