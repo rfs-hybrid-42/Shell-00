@@ -6,8 +6,8 @@
 
 <div align="center">
   <h1>🐚 Shell 00: Discovering the Unix Command Line</h1>
-  <img src="[https://img.shields.io/badge/Environment-Linux%2FUnix-blue](https://img.shields.io/badge/Environment-Linux%2FUnix-blue)" />
-  <img src="[https://img.shields.io/badge/Grade-100%2F100-success](https://img.shields.io/badge/Grade-100%2F100-success)" />
+  <img src="https://img.shields.io/badge/Environment-Linux%2FUnix-blue" alt="Environment badge" />
+  <img src="https://img.shields.io/badge/Grade-100%2F100-success" alt="Grade badge" />
 </div>
 
 ---
