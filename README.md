@@ -27,8 +27,8 @@ The primary goal of this project is to strip away the graphical user interface (
 | Exercise | Concept & Logic |
 | :--- | :--- |
 | **`ex00: Z`** | **Standard Output:** The goal is to create a file that outputs "Z" and a newline when `cat` is called on it. <br><br>**Logic:** Use the `echo` command combined with the output redirection operator (`>`) to write text directly into a file without opening a text editor. <br>`echo "Z" > z` |
-| **`ex01: testShell00`** | **File Attributes:** Requires modifying a file's permissions to exactly match `-r--r-xr-x`. <br><br>**Logic:** The `chmod` command changes access permissions. The string translates to read-only for the user (4), read/execute for the group (5), and read/execute for others (5). Use `chmod 455 testShell00`. Finally, package it using `tar -cf testShell00.tar testShell00`. |
-| **`ex02: Oh yeah, mooore...`** | **Advanced Attributes & Symlinks:** A deeper dive into `ls -l` outputs, requiring specific file sizes, timestamps, and symbolic links. <br><br>**Logic:** <br>1. **Timestamps:** Use `touch -t YYYYMMDDHHMM filename` to forge exact creation dates.<br>2. **Symlinks:** Use `ln -s target link_name` to create the pointer file.<br>3. **Directories:** Remember that to *enter* or read a directory, it requires the execute (`x`) permission. |
+| **`ex01: testShell00`** | **File Attributes & Size:** Requires modifying a file's permissions to exactly match `-r--r-xr-x` and its size to match exactly 40 bytes. <br><br>**Logic:** Use `chmod 455 testShell00` to set the read/execute permissions for user/group/other. Use `truncate -s 40 testShell00` to artificially set the exact byte size. Finally, package it using `tar -cf testShell00.tar testShell00`. |
+| **`ex02: Oh yeah, mooore...`** | **Advanced Attributes, Sizes & Symlinks:** A deeper dive into `ls -l` outputs, requiring specific file sizes, timestamps, and symbolic links. <br><br>**Logic:** <br>1. **Timestamps:** Use `touch -t YYYYMMDDHHMM filename` to forge exact creation dates.<br>2. **Sizes:** Use `truncate -s` to match the exact byte sizes required by the subject.<br>3. **Symlinks:** Use `ln -s target link_name` to create the pointer file.<br>4. **Directories:** Remember that to *enter* or read a directory, it requires the execute (`x`) permission. |
 
 ### 🚀 Advanced Tools (Git, Find, Diff, Magic)
 | Exercise | Concept & Logic |
@@ -75,6 +75,7 @@ The terminal can be intimidating, but the answers are always built into the syst
 * `man find` - Mastering the search parameters.
 * `man patch` - Understanding how `.diff` files are applied.
 * `man file` - Understanding magic numbers and file signatures.
+* `man truncate` - Understanding how to shrink or extend the size of a file to the specified size.
 * [Ryans Tutorials: Linux Command Line](https://ryanstutorials.net/linuxtutorial/) - A highly recommended resource for beginners.
 
 ### 🤖 AI Usage Guidelines
