@@ -1,48 +1,82 @@
 *This project has been created as part of the 42 curriculum by maaugust.*
 
-# 🐚 Shell 00
+<div align="center">
+  <img src="https://raw.githubusercontent.com/rfs-hybrid/42-Piscine/main/assets/covers/cover-shell00.png" alt="Shell 00 Cover" width="100%" />
+</div>
 
-[![Version](https://img.shields.io/badge/Version-4.5-blue.svg)](#) [![Module](https://img.shields.io/badge/Module-Shell_00-success.svg)](#)
+<div align="center">
+  <h1>🐚 Shell 00: Discovering the Unix Command Line</h1>
+  <img src="[https://img.shields.io/badge/Environment-Linux%2FUnix-blue](https://img.shields.io/badge/Environment-Linux%2FUnix-blue)" />
+  <img src="[https://img.shields.io/badge/Grade-100%2F100-success](https://img.shields.io/badge/Grade-100%2F100-success)" />
+</div>
 
-## 📖 Description
+---
 
-This document is the subject for the Shell 00 module of the C Piscine @ 42. These exercises are carefully laid out by order of difficulty from easiest to hardest. The primary goal of this module is to introduce fundamental concepts of the Unix command line, file system navigation, permissions management, and basic version control.
+## 💡 Description
+**Shell 00** is the first module of the C Piscine @ 42. For many, it is the very first introduction to a terminal environment. 
 
-### 🎯 Featured Exercises
+The primary goal of this project is to strip away the graphical user interface (GUI) and teach the fundamentals of the Unix command line. It covers navigating the file system, manipulating file permissions (attributes), understanding symbolic links, basic version control with Git, and secure authentication using SSH keys.
 
-* **ex00 (Z):** Create a file called `z` that returns "Z", followed by a new line, whenever the command `cat` is used on it.
-* **ex01 (testShell00):** Figure out a way for the output to match a specific `ls -l` output, then execute `tar -cf testShell00.tar testShell00` to create the archive to be submitted.
-* **ex02 (Oh yeah, mooore...):** Create specific files and directories to match a detailed `ls -l` output, and run `tar -cf ex02.tar` to create the archive.
-* **ex03 (SSH me!):** Create your own SSH key and add your public key to your repository in a file named `id_rsa_pub`.
-* **ex04 (midLS):** Place the command line that will list all files and directories in your current directory, making sure directory names are followed by a slash character, separated by a comma and a space, by order of modification date.
-* **ex05 (GiT commit):** Create a shell script that displays the IDs of the last 5 commits of your git repository.
-* **ex06 (gitignore):** Write a short shell script that lists all the existing files ignored by your GiT repository.
-* **ex07 (diff):** Create a file `b` to successfully execute the command `diff a b > sw.diff`.
-* **ex08 (clean):** Place the command line that will search for all files ending by `~`, or a name that starts and ends by `#`. The command line will show and erase all files found, and only one command is allowed.
-* **ex09 (Illusions, not tricks, Michael...):** Create a magic file called `ft_magic` formatted appropriately to detect files of 42 file type, built with a "42" string at the 42nd byte.
+---
 
-## 🚀 Instructions
+## 🧠 Exercise Breakdown & Logic
 
-### Execution Requirements
-* Exercises in Shell must be executable with `/bin/sh`.
-* You cannot leave any additional file in your directory than those specified in the subject.
+*The following section explains the core concepts and commands required to solve each exercise. It is designed to help future Pisciners understand the **why** behind the commands, rather than just copying and pasting them.*
 
-### How to Test
-1.  Clone this repository to your local machine.
-2.  Navigate into the directory of the specific exercise you wish to test (e.g., `cd ex05/`).
-3.  For shell scripts, run them using the terminal:
-    ```bash
-    bash [filename.sh]
-    ```
-4.  For text or configuration files, use standard Unix commands (e.g., `cat z`) to verify the output.
+### 🔹 Basic Navigation & Permissions
+| Exercise | Concept & Logic |
+| :--- | :--- |
+| **`ex00: Z`** | **Standard Output:** The goal is to create a file that outputs "Z" and a newline when `cat` is called on it. <br><br>**Logic:** Use the `echo` command combined with the output redirection operator (`>`) to write text directly into a file without opening a text editor. <br>`echo "Z" > z` |
+| **`ex01: testShell00`** | **File Attributes:** Requires modifying a file's permissions to exactly match `-r--r-xr-x`. <br><br>**Logic:** The `chmod` command changes access permissions. The string translates to read-only for the user (4), read/execute for the group (5), and read/execute for others (5). Use `chmod 455 testShell00`. Finally, package it using `tar -cf testShell00.tar testShell00`. |
+| **`ex02: Oh yeah, mooore...`** | **Advanced Attributes & Symlinks:** A deeper dive into `ls -l` outputs, requiring specific file sizes, timestamps, and symbolic links. <br><br>**Logic:** <br>1. **Timestamps:** Use `touch -t YYYYMMDDHHMM filename` to forge exact creation dates.<br>2. **Symlinks:** Use `ln -s target link_name` to create the pointer file.<br>3. **Directories:** Remember that to *enter* or read a directory, it requires the execute (`x`) permission. |
 
-## 📚 Resources
+### 🚀 Advanced Tools (Git, Find, Diff, Magic)
+| Exercise | Concept & Logic |
+| :--- | :--- |
+| **`ex03: SSH me!`** | **Secure Shell (SSH):** Requires generating an SSH key pair. <br><br>**Logic:** Passwords are weak. SSH keys use public-key cryptography. You use `ssh-keygen` to create two keys: a private one (never share this) and a public one (`id_rsa_pub`) which you submit to the repository. |
+| **`ex04: midLS`** | **Listing Formatting:** Requires listing files separated by a comma and a space, ordered by modification date, with trailing slashes for directories. <br><br>**Logic:** The `ls` command has flags for everything. <br>`-m` separates with commas.<br>`-t` sorts by time modified.<br>`-p` appends a `/` to directories. Combine them: `ls -mtp`. |
+| **`ex05: GiT commit`** | **Git History:** Extracting specific data from Git logs. <br><br>**Logic:** `git log` shows history, but we only want the last 5 commit IDs. We use `-n 5` to limit the output, and `--format="%H"` to print *only* the full hash. |
+| **`ex06: gitignore`** | **Git Ignored Files:** Listing files that Git is explicitly ignoring. <br><br>**Logic:** `.gitignore` dictates what Git ignores, but to actually list those hidden files in the terminal, you use plumbing commands like `git ls-files --others --ignored --exclude-standard`. |
+| **`ex07: diff`** | **Patching Files:** Recreating an original file using a modified file and a `.diff` file. <br><br>**Logic:** The `diff` command creates a roadmap of changes between two files. The `patch` command applies that roadmap. You must use `patch` to reverse-engineer file `b`. |
+| **`ex08: clean`** | **Finding & Deleting:** Locating and erasing temporary files (`*~` or `#*#`) in a single command line. <br><br>**Logic:** The `find` command is incredibly powerful. Use `find . -type f` to look for files. Use `\( -name "*~" -o -name "#*#" \)` to set the search parameters (the `-o` means OR). Finally, use `-print -delete` to display and remove them. |
+| **`ex09: Illusions`** | **File Signatures (Magic Bytes):** Creating a file that identifies as a custom "42" file type. <br><br>**Logic:** The `file` command doesn't look at file extensions (like `.txt`); it looks at "magic numbers" hidden in the file headers. You must create a custom magic file definition mapping the string "42" to the 42nd byte offset. |
 
-Your reference guide is called Google / man / the Internet / ... Specific manual pages referenced for completing these exercises include:
-* `man patch`
-* `man find`
-* `man file`
+---
 
-### AI Usage Disclaimer
-* **Code Generation:** No AI was used to write the shell scripts or solve the exercises in this repository. All solutions are my own.
-* **Documentation:** AI was utilized solely to format and structure this `README.md` file to adhere to the strict 42 documentation standards, ensuring clear and professional presentation.
+## 🛠️ Instructions
+
+### 📦 Usage & Testing
+Since these are Shell scripts and basic text/configuration files, there is no compilation required. They must be executed using `/bin/sh`.
+
+1. **Clone the repository:**
+   ```bash
+   git clone <your_repository_link>
+   cd 42-Piscine/Shell00
+   ```
+
+2. **Run Scripts:**
+   Navigate to the specific exercise folder and run the `.sh` files using bash or sh:
+   ```bash
+   cd ex05
+   bash git_commit.sh
+   ```
+
+3. **Verify File Outputs:**
+   For exercises like `ex00` or `ex04`, you can verify the contents or the execution using `cat` or by directly pasting the command line into your terminal.
+
+---
+
+## 📚 Resources & References
+
+The terminal can be intimidating, but the answers are always built into the system. The command `man` (manual) is your best friend.
+
+* `man chmod` - Understanding permissions and the octal number system.
+* `man ls` - Discovering all the hidden formatting flags.
+* `man find` - Mastering the search parameters.
+* `man patch` - Understanding how `.diff` files are applied.
+* `man file` - Understanding magic numbers and file signatures.
+* [Ryans Tutorials: Linux Command Line](https://ryanstutorials.net/linuxtutorial/) - A highly recommended resource for beginners.
+
+### 🤖 AI Usage Guidelines
+* **Code:** No AI-generated code was used to solve these exercises. All shell commands, scripts, and configurations were manually written and tested to ensure a deep, practical understanding of the Unix system.
+* **Documentation:** AI tools were utilized to structure this `README.md` and format the logic breakdowns to create a clean, accessible educational resource for fellow 42 students.
