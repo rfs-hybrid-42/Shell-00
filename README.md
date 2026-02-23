@@ -6,6 +6,8 @@
 
 <div align="center">
   <h1>🐚 Shell 00: Discovering the Unix Command Line</h1>
+  <p><i>Introduction to the Unix command line, file system navigation, permissions, and basic version control.</i></p>
+
   <img src="https://img.shields.io/badge/Environment-Linux%2FUnix-blue" alt="Environment badge" />
   <img src="https://img.shields.io/badge/Grade-100%2F100-success" alt="Grade badge" />
 </div>
